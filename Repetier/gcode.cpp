@@ -88,7 +88,7 @@ inline void rf_store_char(unsigned char c, ring_buffer *buffer)
 #if !defined(USART0_RX_vect) && defined(USART1_RX_vect)
 // do nothing - on the 32u4 the first USART is USART1
 #else
-#if !defined(USART_RX_vect) && !defined(SIG_USART0_RECV) && \
+#if !defined(USART_RX_vect) && \
     !defined(SIG_UART0_RECV) && !defined(USART0_RX_vect) && \
 	!defined(SIG_UART_RECV)
   #error "Don't know what the Data Received vector is called for the first UART"
@@ -98,8 +98,6 @@ inline void rf_store_char(unsigned char c, ring_buffer *buffer)
   #define serialEvent_implemented
 #if defined(USART_RX_vect)
   SIGNAL(USART_RX_vect)
-#elif defined(SIG_USART0_RECV)
-  SIGNAL(SIG_USART0_RECV)
 #elif defined(SIG_UART0_RECV)
   SIGNAL(SIG_UART0_RECV)
 #elif defined(USART0_RX_vect)

@@ -379,7 +379,7 @@ extern unsigned char i2c_read(unsigned char ack);
 #define UI_MENU_ACTIONSELECTOR(name,row,entries) UI_STRING(name ## _txt,row);UIMenuEntry name PROGMEM = {name ## _txt,2,(unsigned int)&entries};
 #define UI_MENU_SUBMENU(name,row,entries) UI_STRING(name ## _txt,row);UIMenuEntry name PROGMEM = {name ## _txt,2,(unsigned int)&entries};
 #define UI_MENU(name,items,itemsCnt) const UIMenuEntry * const name ## _entries[] PROGMEM = items;const UIMenu name PROGMEM = {2,0,itemsCnt,name ## _entries}
-#define UI_MENU_FILESELECT(name,items,itemsCnt) const UIMenuEntry *name ## _entries[] PROGMEM = items;const UIMenu name PROGMEM = {1,0,itemsCnt,name ## _entries}
+#define UI_MENU_FILESELECT(name,items,itemsCnt) const UIMenuEntry * const name ## _entries[]  PROGMEM = items;const UIMenu name PROGMEM = {1,0,itemsCnt,name ## _entries}
 
 #if FEATURE_CONTROLLER==2 // reprapdiscount smartcontroller has a sd card buildin 
 #undef SDCARDDETECT
@@ -667,7 +667,7 @@ void ui_check_slow_keys(int &action) {}
 #define UI_STATUS_UPD(status) {uid.setStatusP(PSTR(status));uid.refreshPage();}
 #define UI_STATUS_RAM(status) uid.setStatus(status);
 #define UI_STATUS_UPD_RAM(status) {uid.setStatus(status);uid.refreshPage();}
-#define UI_ERROR(msg) {uid.errorMsg=PSTR(msg);pushMenu((void*)&ui_menu_error,true);}
+#define UI_ERROR(msg) {uid.errorMsg=(void*)STR(msg);pushMenu((void*)&ui_menu_error,true);}
 #define UI_CLEAR_STATUS {uid.statusMsg[0]=0;}
 #else
 #define UI_INITIALIZE {}

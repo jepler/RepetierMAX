@@ -19,6 +19,8 @@
     which based on Tonokip RepRap firmware rewrite based off of Hydra-mmm firmware.
 */
 
+#define __PROG_TYPES_COMPAT__
+
 #include "Reptier.h"
 #include "pins_arduino.h"
 #include "ui.h"
@@ -29,12 +31,12 @@
 Extruder *current_extruder;
 
 #if NUM_EXTRUDER>0
-prog_char ext0_select_cmd[] PROGMEM = EXT0_SELECT_COMMANDS;
-prog_char ext0_deselect_cmd[] PROGMEM = EXT0_DESELECT_COMMANDS;
+prog_char const ext0_select_cmd[] PROGMEM = EXT0_SELECT_COMMANDS;
+prog_char const ext0_deselect_cmd[] PROGMEM = EXT0_DESELECT_COMMANDS;
 #endif
 #if NUM_EXTRUDER>1
-prog_char ext1_select_cmd[] PROGMEM = EXT1_SELECT_COMMANDS;
-prog_char ext1_deselect_cmd[] PROGMEM = EXT1_DESELECT_COMMANDS;
+prog_char const ext1_select_cmd[] PROGMEM = EXT1_SELECT_COMMANDS;
+prog_char const ext1_deselect_cmd[] PROGMEM = EXT1_DESELECT_COMMANDS;
 #endif
 #if NUM_EXTRUDER>2
 prog_char ext2_select_cmd[] PROGMEM = EXT2_SELECT_COMMANDS;
